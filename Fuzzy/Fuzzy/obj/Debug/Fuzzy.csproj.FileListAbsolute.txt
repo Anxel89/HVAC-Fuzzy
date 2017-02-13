@@ -1,0 +1,6 @@
+C:\Users\anxel\Documents\GitHub\SSE-635-Project-II\Fuzzy\Fuzzy\bin\Debug\Fuzzy.exe.config
+C:\Users\anxel\Documents\GitHub\SSE-635-Project-II\Fuzzy\Fuzzy\bin\Debug\Fuzzy.exe
+C:\Users\anxel\Documents\GitHub\SSE-635-Project-II\Fuzzy\Fuzzy\bin\Debug\Fuzzy.pdb
+C:\Users\anxel\Documents\GitHub\SSE-635-Project-II\Fuzzy\Fuzzy\obj\Debug\Fuzzy.csprojResolveAssemblyReference.cache
+C:\Users\anxel\Documents\GitHub\SSE-635-Project-II\Fuzzy\Fuzzy\obj\Debug\Fuzzy.exe
+C:\Users\anxel\Documents\GitHub\SSE-635-Project-II\Fuzzy\Fuzzy\obj\Debug\Fuzzy.pdb
