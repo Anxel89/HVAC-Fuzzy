@@ -46,6 +46,7 @@ namespace Fuzzy
             regions[2] = three;
             regions[3] = four;
         }
+        #endregion
         public MembershipFunction(Region one, Region two, Region three, Region four, Region five)
         {
             regions[0] = one;
@@ -56,6 +57,6 @@ namespace Fuzzy
         }
 
 
-        #endregion
+
     }
 }
