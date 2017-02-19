@@ -69,11 +69,15 @@ namespace Fuzzy
                if(regions[i].Leftmost == true && regions[i].Rightmost == false)
                 {
                     // is the leftmost region
-                    if( input <= regions[i].Rightbound.X)
-                    {
+                    if( input <= regions[i].Rightbound.X && input < regions[i].Peak.X)
+                    {                        
                         point tmp = new point();
                         tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Rightbound, input);
                         result.Data.Add(regions[i].Name, tmp.Y);
+                    }
+                    else if(input <= regions[i].Peak.X)
+                    {
+                        result.Data.Add(regions[i].Name, 1.0);
                     }
                     else
                     {
@@ -84,12 +88,16 @@ namespace Fuzzy
                else if(regions[i].Rightmost == true && regions[i].Leftmost == false)
                 {
                     // is the rightmost region
-                    if(input >= regions[i].Leftbound.X)
+                    if(input >= regions[i].Leftbound.X && input < regions[i].Peak.X)
                     {
                         point tmp = new point();
                         tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Leftbound, input);
                         result.Data.Add(regions[i].Name, tmp.Y);
 
+                    }
+                    else if(input >= regions[i].Peak.X)
+                    {
+                        result.Data.Add(regions[i].Name, 1.0);
                     }
                     else
                     {
@@ -99,6 +107,7 @@ namespace Fuzzy
 
                else
                 {
+                    // middle region
                     if(input >= regions[i].Leftbound.X && input < regions[i].Peak.X)
                     {
                         point tmp = new point();
@@ -121,20 +130,6 @@ namespace Fuzzy
             return result;
         }
 
-        //public point liner_interpolation(point a, point b, double x)
-        //{
-
-        //    // (x0,y0) is always the first point passed in;
-        //    point result = new point();
-        //    double slope = ((b.y - a.y) / (b.x - a.x));
-        //    double second_term = x - a.x;
-        //    double tmp = a.y + second_term * slope;
-        //    result.X = x;
-        //    result.Y = tmp;
-        //    return result;
-
-        //}
-
-
+     
     }
 }
