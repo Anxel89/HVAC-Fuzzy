@@ -61,7 +61,7 @@ namespace Fuzzy
             this.regions[4] = five;
         }
 
-        public FuzzySet EvalMembership(double input)
+        public FuzzySet EvalMembership(double input, string tofind)
         {
             FuzzySet result = new FuzzySet();
             for (int i = 0; i < regions.Length; i++)
@@ -72,7 +72,7 @@ namespace Fuzzy
                     if( input <= regions[i].Rightbound.X && input < regions[i].Peak.X)
                     {                        
                         point tmp = new point();
-                        tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Rightbound, input);
+                        tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Rightbound, input, tofind);
                         result.Data.Add(regions[i].Name, tmp.Y);
                     }
                     else if(input <= regions[i].Peak.X)
@@ -91,7 +91,7 @@ namespace Fuzzy
                     if(input >= regions[i].Leftbound.X && input < regions[i].Peak.X)
                     {
                         point tmp = new point();
-                        tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Leftbound, input);
+                        tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Leftbound, input, tofind);
                         result.Data.Add(regions[i].Name, tmp.Y);
 
                     }
@@ -111,13 +111,13 @@ namespace Fuzzy
                     if(input >= regions[i].Leftbound.X && input < regions[i].Peak.X)
                     {
                         point tmp = new point();
-                        tmp = tmp.liner_interpolation(regions[i].Leftbound, regions[i].Peak, input);
+                        tmp = tmp.liner_interpolation(regions[i].Leftbound, regions[i].Peak, input, tofind);
                         result.Data.Add(regions[i].Name, tmp.Y);
                     }
                     else if(input >= regions[i].Peak.X && input <= regions[i].Rightbound.X)
                     {
                         point tmp = new point();
-                        tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Rightbound, input);
+                        tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Rightbound, input, tofind);
                         result.Data.Add(regions[i].Name, tmp.Y);
 
                     }

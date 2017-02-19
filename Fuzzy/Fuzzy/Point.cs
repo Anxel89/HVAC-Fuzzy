@@ -10,39 +10,62 @@ namespace Fuzzy
         public class point
         {
             private double x, y;
+            private string region_in;
 
             public double X
-        {
+             {
                 set { x = value; }
                 get { return x; }
-        }
-            public double Y {
+            }
+            public double Y
+            {
                 set { y = value; }
                 get { return y; }
-        }
+            }
+            public string RegionIn
+             {
+            set { region_in = value; }
+            get { return region_in; }
+
+             }
+
+
 
             public point()
             {
                 x = 0.0;
                 y = 0.0;
             }
-            public point(double x, double y)
+            public point(double x, double y, string region_in = "")
             {
                 this.x = x;
                 this.y = y;
+                this.region_in = region_in;
             }
 
-         public point liner_interpolation(point a, point b, double x)
+         public point liner_interpolation(point a, point b, double x,string tofind)
         {
 
             // (x0,y0) is always the first point passed in;
             point result = new point();
-            double slope = ((b.y - a.y) / (b.x - a.x));        
-            double second_term = x - a.x;          
-            double tmp = a.y + second_term * slope;
-            result.X = x;
-            result.Y = tmp;
-            return result;
+            if (tofind == "y")
+            {
+                double slope = ((b.y - a.y) / (b.x - a.x));
+                double second_term = x - a.x;
+                double tmp = a.y + second_term * slope;
+                result.X = x;
+                result.Y = tmp;
+                return result;
+            }
+            else
+            {
+                double slope = ((b.x - a.x) / (b.y - a.y));
+                double second_term = x - a.Y;
+                double tmp = a.X + second_term * slope;
+                result.X = tmp;
+                result.Y = x;
+                return result;
+            }
             
         }
 

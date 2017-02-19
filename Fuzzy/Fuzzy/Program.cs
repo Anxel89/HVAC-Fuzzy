@@ -11,20 +11,22 @@ namespace Fuzzy
     {
         static void Main(string[] args)
         {
-
+            //input memebership function creation
             Region very_cold = create_region("very cold", 0.0, 0.0, 60.0, 1.0, 65.0, 0.0, true, false);
             Region cold = create_region("cold",60.0, 0.0, 65.0, 1.0, 60.0, 0.0, false, false);
             Region warm = create_region("warm",65.0, 0.0, 70.0, 1.0, 75.0, 0.0, false, false);
             Region hot = create_region("hot",70.0, 0.0, 75.0, 1.0, 80.0, 0.0, false, false);
             Region very_hot = create_region("very hot",75.0, 0.0, 80.0, 1.0, 0.0, 0.0, false, true);
             MembershipFunction temp = new MembershipFunction(very_cold, cold, warm, hot, very_hot);
+            // output memebership function creation
+            string[] regions = { "hi cool", "cool", "no change", "heat", "hi heat" };
+            Region hicool = create_region("hi cool", 0.0, 0.0, -100.0, 1.0, -50.0, 0.0, true, false);
+            Region cool = create_region("cool", -50.25, 0.0, -50.0, 1.0, -1.0, 0.0, false, false);
+            Region no_change = create_region("no change", -1.0, 0.0, 0.0, 1.0, 1.0, 0.0, false, false);
+            Region heat = create_region("heat", -1.0, 0.0, 50.0, 1.0, 50.25, 0.0, false, false);
+            Region hiheat = create_region("hi heat", 50.0, 0.0, 100.0, 1.0, 0.0, 0.0, false, true);
             // this is how we get the value of a points degree of membership
-            point two = new point(10.0, 0.0);
-            point one = new point(5.0, 1.0);
-            point value = new point();
-            value = value.liner_interpolation(one, two, 9.84);
-            Console.WriteLine(value.Y);
-            Console.ReadKey();
+          
 
         }
 
