@@ -61,7 +61,7 @@ namespace Fuzzy
             this.regions[4] = five;
         }
 
-        public FuzzySet EvalMembership(double temp)
+        public FuzzySet EvalMembership(double input)
         {
             FuzzySet result = new FuzzySet();
             for (int i = 0; i < regions.Length; i++)
@@ -69,21 +69,53 @@ namespace Fuzzy
                if(regions[i].Leftmost == true && regions[i].Rightmost == false)
                 {
                     // is the leftmost region
-
-
-
-
+                    if( input <= regions[i].Rightbound.X)
+                    {
+                        point tmp = new point();
+                        tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Rightbound, input);
+                        result.Data.Add(regions[i].Name, tmp.Y);
+                    }
+                    else
+                    {
+                        result.Data.Add(regions[i].Name, 0.0);
+                    }
                 }
 
                else if(regions[i].Rightmost == true && regions[i].Leftmost == false)
                 {
                     // is the rightmost region
+                    if(input >= regions[i].Leftbound.X)
+                    {
+                        point tmp = new point();
+                        tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Leftbound, input);
+                        result.Data.Add(regions[i].Name, tmp.Y);
 
+                    }
+                    else
+                    {
+                        result.Data.Add(regions[i].Name, 0.0);
+                    }
                 }
 
                else
                 {
-                    // is a middle region
+                    if(input >= regions[i].Leftbound.X && input < regions[i].Peak.X)
+                    {
+                        point tmp = new point();
+                        tmp = tmp.liner_interpolation(regions[i].Leftbound, regions[i].Peak, input);
+                        result.Data.Add(regions[i].Name, tmp.Y);
+                    }
+                    else if(input >= regions[i].Peak.X && input <= regions[i].Rightbound.X)
+                    {
+                        point tmp = new point();
+                        tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Rightbound, input);
+                        result.Data.Add(regions[i].Name, tmp.Y);
+
+                    }
+                    else
+                    {
+                        result.Data.Add(regions[i].Name, 0.0);
+                    }
                 }
             }
             return result;
