@@ -92,35 +92,35 @@ namespace Fuzzy
                 NoChange.Add(tmp);
             }
 
-            else if (target_tmp.Data["cold"] != 0.0 && current_tmp.Data["cold"] != 0.0)
+            if (target_tmp.Data["cold"] != 0.0 && current_tmp.Data["cold"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["cold"], current_tmp.Data["cold"]);
                 NoChange.Add(tmp);
             }
 
-            else if (target_tmp.Data["warm"] != 0.0 && current_tmp.Data["warm"] != 0.0)
+            if (target_tmp.Data["warm"] != 0.0 && current_tmp.Data["warm"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["warm"], current_tmp.Data["warm"]);
                 NoChange.Add(tmp);
             }
-            else if (target_tmp.Data["hot"] != 0.0 && current_tmp.Data["hot"] != 0.0)
+            if (target_tmp.Data["hot"] != 0.0 && current_tmp.Data["hot"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["hot"], current_tmp.Data["hot"]);
                 NoChange.Add(tmp);
             }
-            else if (target_tmp.Data["very hot"] != 0.0 && current_tmp.Data["very hot"] != 0.0)
+            if (target_tmp.Data["very hot"] != 0.0 && current_tmp.Data["very hot"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["very hot"], current_tmp.Data["very hot"]);
                 NoChange.Add(tmp);
             }
 
-            else if (target_tmp.Data["very cold"] != 0.0 && current_tmp.Data["cold"] != 0.0)
+            if (target_tmp.Data["very cold"] != 0.0 && current_tmp.Data["cold"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["very cold"], current_tmp.Data["cold"]);
                 Cool.Add(tmp);
             }
 
-            else if (target_tmp.Data["very cold"] != 0.0 && (current_tmp.Data["warm"] != 0.0 || current_tmp.Data["hot"] != 0.0 || current_tmp.Data["very hot"] != 0.0))
+            if (target_tmp.Data["very cold"] != 0.0 && (current_tmp.Data["warm"] != 0.0 || current_tmp.Data["hot"] != 0.0 || current_tmp.Data["very hot"] != 0.0))
             {
                 double tmp = Math.Min(target_tmp.Data["very cold"], current_tmp.Data["warm"]);
                 double tmp1 = Math.Min(target_tmp.Data["very cold"], current_tmp.Data["hot"]);
@@ -130,17 +130,17 @@ namespace Fuzzy
                 HiCool.Add(value2);
             }
 
-            else if (target_tmp.Data["cold"] != 0.0 && current_tmp.Data["very cold"] != 0.0)
+            if (target_tmp.Data["cold"] != 0.0 && current_tmp.Data["very cold"] != 0.0)
             {
-                double tmp = Math.Min(target_tmp.Data["cold"], current_tmp.Data["very_cold"]);
+                double tmp = Math.Min(target_tmp.Data["cold"], current_tmp.Data["very cold"]);
                 Heat.Add(tmp);
             }
-            else if (target_tmp.Data["cold"] != 0.0 && current_tmp.Data["warm"] != 0.0)
+            if (target_tmp.Data["cold"] != 0.0 && current_tmp.Data["warm"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["cold"], current_tmp.Data["warm"]);
                 Cool.Add(tmp);
             }
-            else if (target_tmp.Data["cold"] != 0.0 && current_tmp.Data["hot"] != 0.0 || current_tmp.Data["very hot"] != 0.0)
+            if (target_tmp.Data["cold"] != 0.0 && current_tmp.Data["hot"] != 0.0 || current_tmp.Data["very hot"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["cold"], current_tmp.Data["hot"]);
                 double tmp2 = Math.Min(target_tmp.Data["cold"], current_tmp.Data["very hot"]);
@@ -148,48 +148,48 @@ namespace Fuzzy
                 HiCool.Add(value);
 
             }
-            else if(target_tmp.Data["warm"] != 0.0 && current_tmp.Data["very cold"] != 0.0)
+            if(target_tmp.Data["warm"] != 0.0 && current_tmp.Data["very cold"] != 0.0)
             {
-                double tmp = Math.Min(target_tmp.Data["warm"], current_tmp.Data["very_cold"]);
+                double tmp = Math.Min(target_tmp.Data["warm"], current_tmp.Data["very cold"]);
                 HiHeat.Add(tmp);
 
             }
 
-            else if(target_tmp.Data["warm"] != 0.0 && current_tmp.Data["cold"] != 0.0)
+            if(target_tmp.Data["warm"] != 0.0 && current_tmp.Data["cold"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["warm"], current_tmp.Data["cold"]);
                 Heat.Add(tmp);
             }
 
-            else if(target_tmp.Data["warm"] != 0.0 && current_tmp.Data["hot"] != 0.0)
+            if(target_tmp.Data["warm"] != 0.0 && current_tmp.Data["hot"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["warm"], current_tmp.Data["hot"]);
                 Cool.Add(tmp);
 
             }
-            else if(target_tmp.Data["warm"] != 0.0 && current_tmp.Data["very hot"] != 0.0)
+            if(target_tmp.Data["warm"] != 0.0 && current_tmp.Data["very hot"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["warm"], current_tmp.Data["very hot"]);
                 HiCool.Add(tmp);
             }
-            else if(target_tmp.Data["hot"] != 0.0 && (current_tmp.Data["very cold"] != 0.0 || current_tmp.Data["cold"] != 0.0))
+            if(target_tmp.Data["hot"] != 0.0 && (current_tmp.Data["very cold"] != 0.0 || current_tmp.Data["cold"] != 0.0))
             {
                 double tmp = Math.Min(target_tmp.Data["hot"], current_tmp.Data["very cold"]);
                 double tmp2 = Math.Min(target_tmp.Data["hot"], current_tmp.Data["cold"]);
                 double value = Math.Max(tmp, tmp2);
                 HiHeat.Add(value);
             }
-            else if(target_tmp.Data["hot"] != 0.0 && current_tmp.Data["warm"] != 0.0)
+            if(target_tmp.Data["hot"] != 0.0 && current_tmp.Data["warm"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["hot"], current_tmp.Data["warm"]);
                 Heat.Add(tmp);
             }
-            else if (target_tmp.Data["hot"] != 0.0 && current_tmp.Data["very hot"] != 0.0)
+            if (target_tmp.Data["hot"] != 0.0 && current_tmp.Data["very hot"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["hot"], current_tmp.Data["very hot"]);
                 Cool.Add(tmp);
             }
-            else if(target_tmp.Data["very hot"] != 0.0 && (current_tmp.Data["very cold"] != 0.0 || current_tmp.Data["cold"] != 0.0 || current_tmp.Data["warm"] != 0.0))
+            if(target_tmp.Data["very hot"] != 0.0 && (current_tmp.Data["very cold"] != 0.0 || current_tmp.Data["cold"] != 0.0 || current_tmp.Data["warm"] != 0.0))
             {
                 double tmp = Math.Min(target_tmp.Data["very hot"], current_tmp.Data["very cold"]);
                 double tmp2 = Math.Min(target_tmp.Data["very hot"], current_tmp.Data["cold"]);
@@ -198,7 +198,7 @@ namespace Fuzzy
                 double value2 = Math.Max(tmp3, value);
                 HiHeat.Add(value2);
             }
-            else if(target_tmp.Data["very hot"] != 0.0 && current_tmp.Data["hot"] != 0.0)
+            if(target_tmp.Data["very hot"] != 0.0 && current_tmp.Data["hot"] != 0.0)
             {
                 double tmp = Math.Min(target_tmp.Data["very hot"], current_tmp.Data["hot"]);
                 Heat.Add(tmp);

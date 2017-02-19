@@ -69,7 +69,7 @@ namespace Fuzzy
                if(regions[i].Leftmost == true && regions[i].Rightmost == false)
                 {
                     // is the leftmost region
-                    if( input <= regions[i].Rightbound.X && input < regions[i].Peak.X)
+                    if( input <= regions[i].Rightbound.X && input > regions[i].Peak.X)
                     {                        
                         point tmp = new point();
                         tmp = tmp.liner_interpolation(regions[i].Peak, regions[i].Rightbound, input, tofind);
@@ -184,7 +184,7 @@ namespace Fuzzy
                 }
                 else if (region == regions[4])
                 {
-                    value = value.liner_interpolation(this.Regions[1].Peak, this.Regions[1].Rightbound, max, "x");
+                    value = value.liner_interpolation(this.Regions[4].Peak, this.Regions[4].Rightbound, max, "x");
                     return "Output is: " + Math.Abs(value.X) + "% heating";
 
                 }
