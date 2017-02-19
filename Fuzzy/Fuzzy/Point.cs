@@ -32,14 +32,17 @@ namespace Fuzzy
                 this.y = y;
             }
 
-         public void liner_interpolation(point a, point b, double x)
+         public point liner_interpolation(point a, point b, double x)
         {
+
             // (x0,y0) is always the first point passed in;
+            point result = new point();
             double slope = ((b.y - a.y) / (b.x - a.x));        
             double second_term = x - a.x;          
             double tmp = a.y + second_term * slope;
-            this.x = x;
-            this.y = tmp;
+            result.X = x;
+            result.Y = tmp;
+            return result;
             
         }
 
