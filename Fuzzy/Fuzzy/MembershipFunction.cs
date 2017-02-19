@@ -129,7 +129,84 @@ namespace Fuzzy
             }
             return result;
         }
+        public string defuzzify(FuzzySet data, string type = "max")
+        {
+            type.ToLower();        
+            if (type == "max")
+            {
+                double max = 0.0;
+                string region = string.Empty;
+                foreach (string key in data.Data.Keys)
+                {
 
-     
+                    if (data.Data[key] != 0.0)
+                    {
+                        if (data.Data[key] > max)
+                        {
+                            max = data.Data[key];
+                            region = key;
+
+                        }
+                    }
+                }
+                string[] regions = { "hi cool", "cool", "no change", "heat", "hi heat" };
+                point value = new point();
+                point value1 = new Fuzzy.point();
+                if (region == regions[0])
+                {
+                    value = value.liner_interpolation(this.Regions[0].Peak, this.Regions[0].Leftbound, max, "x");
+                    return "Output is: " + Math.Abs(value.X) + "% cooling";
+                }
+
+                else if(region == regions[1])
+                {
+                    value = value.liner_interpolation(this.Regions[1].Peak, this.Regions[1].Leftbound, max, "x");
+                    value1 = value1.liner_interpolation(this.Regions[1].Peak, this.Regions[1].Rightbound, max, "x");
+                    double output = (value.X + value1.X) / 2;
+                    return "Output is: " + Math.Abs(output) + "% cooling";
+
+                }
+                else if (region == regions[2])
+                {
+                    value = value.liner_interpolation(this.Regions[2].Peak, this.Regions[2].Leftbound, max, "x");
+                    value1 = value1.liner_interpolation(this.Regions[2].Peak, this.Regions[2].Rightbound, max, "x");
+                    double output = (value.X + value1.X) / 2;
+                    return "Output is: " + Math.Abs(output) + "% sytstem is off";
+
+                }
+                else if (region == regions[3])
+                {
+                    value = value.liner_interpolation(this.Regions[3].Peak, this.Regions[3].Leftbound, max, "x");
+                    value1 = value1.liner_interpolation(this.Regions[3].Peak, this.Regions[3].Rightbound, max, "x");
+                    double output = (value.X + value1.X) / 2;
+                    return "Output is: " + Math.Abs(output) + "% heating";
+
+                }
+                else if (region == regions[4])
+                {
+                    value = value.liner_interpolation(this.Regions[1].Peak, this.Regions[1].Rightbound, max, "x");
+                    return "Output is: " + Math.Abs(value.X) + "% heating";
+
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            else if (type == "gravity")
+            {
+                // logic for doing center of gravity method
+                return string.Empty;
+            }
+
+            else
+            {
+                // logic for doing center of area
+                return string.Empty;
+            }
+
+        }
+
+
     }
 }

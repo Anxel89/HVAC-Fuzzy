@@ -26,6 +26,8 @@ namespace Fuzzy
         public FuzzySet()
         {
             // create a brand new object with no data
+            this.data = new Dictionary<string, double>();
+            data.Add("default", 0.0);
             name = "";
             string[] region_name = new string[0];
             double[] region_dom = new double[0];
@@ -35,38 +37,21 @@ namespace Fuzzy
         public FuzzySet(string[] region, double[] dom, string name)
         {
             // create object with data;
+            this.data = new Dictionary<string, double>(50);
             this.name = name;
             if (dom.Length == region.Length)
             {
              
                 for (int i = 0; i < region.Length; i++)
                 {
+                   
                     data.Add(region[i], dom[i]);
                 }
             }
-        }
-            
+        }   
       
 
-        public string defuzzify(FuzzySet data, string type = "max")
-        {
-            type.ToLower();            
-            string result = "";            
-            if (type == "max")
-            {         
-               
-            }
-            else if(type == "gravity")
-            {
-                // logic for doing center of gravity method
-            }
-            
-            else
-            {
-                // logic for doing center of area
-            }
-            return result;
-        }
+    
 
         public FuzzySet BaseRules(FuzzySet target_tmp, FuzzySet current_tmp)
         {
@@ -101,9 +86,9 @@ namespace Fuzzy
 
 
             // no_change senerios
-            if (target_tmp.Data["very cold"] != 0.0 && current_tmp.Data["very_cold"] != 0.0)
+            if (target_tmp.Data["very cold"] != 0.0 && current_tmp.Data["very cold"] != 0.0)
             {
-                double tmp = Math.Min(target_tmp.Data["very cold"], current_tmp.Data["very_cold"]);
+                double tmp = Math.Min(target_tmp.Data["very cold"], current_tmp.Data["very cold"]);
                 NoChange.Add(tmp);
             }
 
@@ -131,7 +116,7 @@ namespace Fuzzy
 
             else if (target_tmp.Data["very cold"] != 0.0 && current_tmp.Data["cold"] != 0.0)
             {
-                double tmp = Math.Min(target_tmp.Data["very_cold"], current_tmp.Data["cold"]);
+                double tmp = Math.Min(target_tmp.Data["very cold"], current_tmp.Data["cold"]);
                 Cool.Add(tmp);
             }
 
@@ -187,7 +172,7 @@ namespace Fuzzy
                 double tmp = Math.Min(target_tmp.Data["warm"], current_tmp.Data["very hot"]);
                 HiCool.Add(tmp);
             }
-            else if(target_tmp.Data["hot"] != 0.0 && (current_tmp.Data["very_cold"] != 0.0 || current_tmp.Data["cold"] != 0.0))
+            else if(target_tmp.Data["hot"] != 0.0 && (current_tmp.Data["very cold"] != 0.0 || current_tmp.Data["cold"] != 0.0))
             {
                 double tmp = Math.Min(target_tmp.Data["hot"], current_tmp.Data["very cold"]);
                 double tmp2 = Math.Min(target_tmp.Data["hot"], current_tmp.Data["cold"]);
@@ -240,13 +225,13 @@ namespace Fuzzy
             }
             dom[2] = no_change;
             double max_heat = 0.0;
-            foreach (double item in Cool)
+            foreach (double item in Heat)
             {
                 max_heat = Math.Max(max_heat, item);
             }
             dom[3] = max_heat;
             double max_hiheat = 0.0;
-            foreach (double item in Cool)
+            foreach (double item in HiHeat)
             {
                 max_hiheat = Math.Max(max_hiheat, item);
             }
@@ -257,6 +242,8 @@ namespace Fuzzy
 
 
         }
+
+
      }
      }
 

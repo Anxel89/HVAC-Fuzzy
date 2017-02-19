@@ -50,8 +50,8 @@ namespace Fuzzy
             point result = new point();
             if (tofind == "y")
             {
-                double slope = ((b.y - a.y) / (b.x - a.x));
-                double second_term = x - a.x;
+                double slope = ((b.Y - a.Y) / (b.X - a.X));
+                double second_term = x - a.X;
                 double tmp = a.y + second_term * slope;
                 result.X = x;
                 result.Y = tmp;
@@ -59,7 +59,7 @@ namespace Fuzzy
             }
             else
             {
-                double slope = ((b.x - a.x) / (b.y - a.y));
+                double slope = ((b.X - a.X) / (b.Y - a.Y));
                 double second_term = x - a.Y;
                 double tmp = a.X + second_term * slope;
                 result.X = tmp;
